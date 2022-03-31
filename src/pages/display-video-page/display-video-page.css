@@ -1,0 +1,11 @@
+.video-container-wrapper {
+  display: flex;
+  gap: var(--scale-md);
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
+@media screen and (max-width: 720px) {
+  .video-container-wrapper {
+    gap: var(--scale-sm);
+  }
+}

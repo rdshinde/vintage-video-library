@@ -1,0 +1,72 @@
+.video-card-wrapper {
+  position: relative;
+  max-height: min-content;
+}
+.card__img-container img {
+  border-top-left-radius: var(--scale-md);
+  border-top-right-radius: var(--scale-md);
+  height: 12rem;
+}
+.card {
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 5px 2px var(--shadow-color);
+  max-height: 18rem;
+  max-width: 18rem;
+  outline: 1px solid transparent;
+}
+.card:hover {
+  box-shadow: 0px 0px 5px 2px var(--off-white);
+  transition: all 0.3s ease-in-out 0.2s;
+}
+.card-img:hover::after {
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-top-left-radius: var(--scale-md);
+  border-top-right-radius: var(--scale-md);
+  content: "Play Now";
+  display: flex;
+  font-size: var(--scale-md);
+  font-weight: 600;
+  inset: 0;
+  justify-content: center;
+  opacity: 0.7;
+  position: absolute;
+}
+.video__title {
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.action-modal {
+  background-color: var(--main-bg-color);
+  width: 12rem;
+  height: auto;
+  position: absolute;
+  bottom: -2.5rem;
+  right: 2.5rem;
+  border: 1px solid var(--secondary-color);
+  transform-origin: 0 0;
+  transform: scaleY(0);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
+}
+.action-modal button {
+  color: var(--off-white);
+  margin: var(--scale-sm) auto;
+}
+.action-modal__btn:hover {
+  background-color: var(--secondary-color);
+}
+.show-action-modal {
+  transform: scale(1);
+}
+@media screen and (max-width: 720px) {
+  .card__img-container img {
+    height: 9rem;
+    width: 100%;
+  }
+  .card {
+    max-height: 14rem;
+    max-width: 15rem;
+  }
+}
