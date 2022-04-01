@@ -1,8 +1,12 @@
+import { WatchLaterVideo } from "../../components";
+
 export const WatchLaterVideoPage = () => {
   return (
-    <div className="playlist-container-wrapper">
-      <h3 className="playlist__heading">Your Playlists</h3>
-      <div className="video-container-wrapper"></div>
+    <div>
+      <h3 className="playlist__heading">Watch Later</h3>
+      <section className="video-container-wrapper">
+        <WatchLaterVideo />
+      </section>
     </div>
   );
 };

@@ -46,6 +46,9 @@
 .nav-link:hover {
   text-decoration: none;
 }
+.active-link {
+  background-color: var(--secondary-color);
+}
 @media screen and (max-width: 720px) {
   .sidebar-wrapper {
     display: none;

@@ -1,16 +1,21 @@
 import React from "react";
 import "./header.css";
+import { Link } from "react-router-dom";
 export const Header = () => {
   return (
     <div className="header-wrapper">
       <header>
         <nav>
           <div className="nav-left">
-            <div className="logo-wrapper cursor-pointer">
+            <Link
+              to="/"
+              className="logo-wrapper cursor-pointer"
+              style={{ textDecoration: "none" }}
+            >
               <h2>
                 <i className="fa-solid fa-video m-r-md"></i>Vintage
               </h2>
-            </div>
+            </Link>
           </div>
           <div className="nav-center">
             <div className="search-container">
@@ -24,9 +29,13 @@ export const Header = () => {
             </div>
           </div>
           <div className="nav-right">
-            <button className="btn btn-secondary-outline border-rounded-lg">
+            <Link
+              to="/auth"
+              style={{ textDecoration: "none" }}
+              className="btn btn-secondary-outline border-rounded-lg"
+            >
               Login
-            </button>
+            </Link>
           </div>
         </nav>
       </header>

@@ -9,7 +9,7 @@ export const Sidebar = () => {
         <div className="sidebar__list text-offwhite ">
           <div className="list-divider"></div>
           <section className="sidebar__list-section">
-            <NavLink to={"#"} style={{ textDecoration: "none" }}>
+            <NavLink to={"/"} style={{ textDecoration: "none" }}>
               <div className="text-start text-4 bold-lg nav-link">
                 <span className="m-r-md">
                   <i className="fa-solid fa-home"></i>
@@ -17,7 +17,10 @@ export const Sidebar = () => {
                 Home
               </div>
             </NavLink>
-            <NavLink to={"#"} style={{ textDecoration: "none" }}>
+            <NavLink
+              to={"/playlist"}
+              style={{ textDecoration: "none" }}
+            >
               <div className="text-start text-4 bold-lg nav-link">
                 <span className="m-r-md">
                   <i className="fa-solid fa-clapperboard"></i>
@@ -25,7 +28,7 @@ export const Sidebar = () => {
                 Playlist
               </div>
             </NavLink>
-            <NavLink to={"#"} style={{ textDecoration: "none" }}>
+            <NavLink to={"/liked-video"} style={{ textDecoration: "none" }}>
               <div className="text-start text-4 bold-lg nav-link">
                 <span className="m-r-md">
                   <i className="fa fa-heart"></i>
@@ -33,7 +36,7 @@ export const Sidebar = () => {
                 Liked Videos
               </div>
             </NavLink>
-            <NavLink to={"#"} style={{ textDecoration: "none" }}>
+            <NavLink to={"/watch-later"} style={{ textDecoration: "none" }}>
               <div className="text-start text-4 bold-lg nav-link">
                 <span className="m-r-md">
                   <i className="fa fa-clock"></i>
@@ -41,7 +44,7 @@ export const Sidebar = () => {
                 Watch Later
               </div>
             </NavLink>
-            <NavLink to={"#"} style={{ textDecoration: "none" }}>
+            <NavLink to={"/history"} style={{ textDecoration: "none" }}>
               <div className="text-start text-4 bold-lg nav-link">
                 <span className="m-r-md">
                   <i className="fa fa-history"></i>

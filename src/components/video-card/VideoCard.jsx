@@ -29,10 +29,9 @@ export const VideoCard = () => {
   };
 
   return (
-    <div className="video-card-wrapper">
+    <div className="video-card-wrapper" style={{ maxHeight: "22rem" }}>
       <Video data={{ setActionModalState }} />
       {ActionModal()}
-      {/* {<PlaylistModal />} */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 .show-pwd {
   position: absolute;
-  right: var(--scale-xl);
+  right: var(--scale-md);
   top: var(--scale-md);
 }
 .pwd-input {
