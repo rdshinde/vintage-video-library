@@ -1,0 +1,30 @@
+.auth-container {
+  width: 60%;
+  margin: var(--scale-xl) auto;
+  border: 1px solid var(--secondary-color);
+}
+.auth-form {
+  margin: auto;
+  margin-top: var(--scale-xl);
+}
+.auth-toggle-btns {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+.auth-toggle-btns .auth-btn {
+  width: 100%;
+}
+.auth-toggle-btns .auth-btn .btn {
+  font-size: 25px;
+  border-radius: var(--scale-lg);
+}
+@media screen and (max-width: 1400px) {
+  .auth-container {
+    width: 95%;
+  }
+  .auth-form {
+    width: 95%;
+  }
+}

@@ -1,0 +1,22 @@
+.action-modal {
+  background-color: var(--main-bg-color);
+  width: 12rem;
+  height: auto;
+  position: absolute;
+  bottom: -2.5rem;
+  right: 2.5rem;
+  border: 1px solid var(--secondary-color);
+  transform-origin: 0 0;
+  transform: scaleY(0);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
+}
+.action-modal button {
+  color: var(--off-white);
+  margin: var(--scale-sm) auto;
+}
+.action-modal__btn:hover {
+  background-color: var(--secondary-color);
+}
+.show-action-modal {
+  transform: scale(1);
+}

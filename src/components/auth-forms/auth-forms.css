@@ -1,0 +1,35 @@
+.show-pwd {
+  position: absolute;
+  right: var(--scale-md);
+  top: var(--scale-md);
+}
+.pwd-input {
+  position: relative;
+}
+.login-form {
+  border: 1px solid var(--shadow-color);
+  margin: var(--scale-xl) auto;
+  max-width: 50%;
+}
+.submit-btn {
+  padding: var(--scale-sm) var(--scale-lg);
+}
+form {
+  max-width: 50%;
+  margin: auto;
+  
+}
+input {
+  color: var(--off-white);
+}
+.login_btn .btn {
+  width: auto;
+}
+@media screen and (max-width: 960px) {
+  form {
+    max-width: 95%;
+  }
+  .show-pwd {
+    right: var(--scale-sm);
+  }
+}

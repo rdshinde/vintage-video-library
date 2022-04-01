@@ -1,0 +1,26 @@
+.filterlist-wrapper {
+  align-items: center;
+  display: flex;
+  gap: var(--scale-md);
+  max-width: 95%;
+  margin: auto;
+  overflow: auto;
+}
+.filter__category {
+  background-color: var(--secondary-color);
+  border-radius: var(--scale-lg);
+  color: var(--font-color);
+  cursor: pointer;
+  font-size: var(--scale-md);
+  font-weight: 500;
+  padding: 4px var(--scale-md);
+}
+.filter__category:hover {
+  transition: background-color 0.3s ease-in-out;
+  background-color: var(--primary-color);
+}
+@media screen and (max-width: 720px) {
+  .filterlist-wrapper {
+    justify-content: center;
+  }
+}

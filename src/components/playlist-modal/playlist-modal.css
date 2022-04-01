@@ -1,0 +1,25 @@
+.playlist-modal {
+  background-color: var(--main-bg-color);
+  border-radius: var(--scale-md);
+  border: 1px solid var(--off-white);
+  left: 50%;
+  margin: auto;
+  opacity: 0.8;
+  opacity: 1;
+  padding: var(--scale-sm);
+  position: fixed;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: 18rem;
+  z-index: 15;
+}
+.playlist-modal input {
+  max-width: 60%;
+  outline: 1px solid transparent;
+  padding: var(--scale-sm) 10px;
+  color: var(--off-white);
+  background-color: var(--secondary-color);
+}
+.hide-playlist-modal {
+  display: none;
+}
