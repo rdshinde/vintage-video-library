@@ -7,11 +7,7 @@ export const Header = () => {
       <header>
         <nav>
           <div className="nav-left">
-            <Link
-              to="/"
-              className="logo-wrapper cursor-pointer"
-              style={{ textDecoration: "none" }}
-            >
+            <Link to="/" className="logo-wrapper cursor-pointer nav-link">
               <h2>
                 <i className="fa-solid fa-video m-r-md"></i>Vintage
               </h2>
@@ -31,8 +27,7 @@ export const Header = () => {
           <div className="nav-right">
             <Link
               to="/auth"
-              style={{ textDecoration: "none" }}
-              className="btn btn-secondary-outline border-rounded-lg"
+              className="btn btn-secondary-outline border-rounded-lg nav-link"
             >
               Login
             </Link>

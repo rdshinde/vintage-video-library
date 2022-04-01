@@ -49,6 +49,9 @@
 .active-link {
   background-color: var(--secondary-color);
 }
+.nav-link * {
+  text-decoration: none;
+}
 @media screen and (max-width: 720px) {
   .sidebar-wrapper {
     display: none;
