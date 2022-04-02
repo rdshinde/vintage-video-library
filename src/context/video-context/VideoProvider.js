@@ -1,4 +1,5 @@
-import axios from "axios";
+import { useAxios } from "../../services";
+import { videoReducer } from "./videoReducer";
 import {
   createContext,
   useContext,
@@ -13,13 +14,49 @@ const initialState = {
   playlist: [],
   sortBy: "",
 };
+
 const VideoContext = createContext();
 const useVideo = () => useContext(VideoContext);
+
 const VideoProvider = ({ children }) => {
-  const [videoState, videoDispatch] = useReducer(initialState);
+  const [apiURL, setApiURL] = useState("/api/videos");
+  const { isLoaderLoading, serverResponse, isErrorOccured } = useAxios(apiURL);
+  const [videoState, videoDispatch] = useReducer(videoReducer, initialState);
 
-  const [isLoaderLoading, setLoaderState] = useState(false);
+  useEffect(() => {
+    if (serverResponse.status === 200) {
+      if (serverResponse.data?.videos) {
+        const videosFromServer = serverResponse.data?.videos || [];
+        videoDispatch({
+          type: "UPDATE_VIDEO_LIST",
+          payload: [...videosFromServer],
+        });
+      } else if (serverResponse.data?.categories) {
+        const categoriesFromServer = serverResponse.data?.categories || [];
+        videoDispatch({
+          type: "UPDATE_CATEGORIES_LIST",
+          payload: [...categoriesFromServer],
+        });
+      }
+    }
+  }, [serverResponse]);
 
-  return <VideoContext.Provider>{children}</VideoContext.Provider>;
+  const getCategories = () => {
+    let setTimeoutID = setTimeout(() => {
+      setApiURL("/api/categories");
+    }, 0);
+    return () => clearTimeout(setTimeoutID);
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  return (
+    <VideoContext.Provider
+      value={{ videoState, isLoaderLoading, serverResponse, isErrorOccured }}
+    >
+      {children}
+    </VideoContext.Provider>
+  );
 };
 export { useVideo, VideoProvider };

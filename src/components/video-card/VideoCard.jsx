@@ -3,7 +3,8 @@ import { useState } from "react";
 import { PlaylistModal } from "../playlist-modal/PlaylistModal";
 import { Video } from "../utility-video-card/Video";
 import "./video-card.css";
-export const VideoCard = () => {
+export const VideoCard = ({ data: { video } }) => {
+  const { _id, title, creator, description, category } = video;
   const [showActionModal, setActionModalState] = useState(false);
   const ActionModal = () => {
     return (
@@ -30,7 +31,7 @@ export const VideoCard = () => {
 
   return (
     <div className="video-card-wrapper" style={{ maxHeight: "22rem" }}>
-      <Video data={{ setActionModalState }} />
+      <Video data={{ setActionModalState, _id, title, creator }} />
       {ActionModal()}
     </div>
   );
