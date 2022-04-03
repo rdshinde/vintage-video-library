@@ -4,7 +4,7 @@ import "./auth-page.css";
 export const AuthPage = () => {
   const [authFormState, setAuthFormState] = useState("Login");
   return (
-    <div className="auth-container border-rounded-md shadow-sm">
+    <div className="auth-container border-rounded-md shadow-sm relative">
       <div className="auth-toggle-btns">
         <div className="auth-btn flex-center p-md">
           <button
@@ -26,7 +26,9 @@ export const AuthPage = () => {
       <h2 className="text-center">{authFormState}</h2>
       <div className="auth-form p-md">
         {authFormState === "Login" && <LoginForm />}
-        {authFormState === "Signup" && <SignupForm />}
+        {authFormState === "Signup" && (
+          <SignupForm data={{ setAuthFormState }} />
+        )}
       </div>
     </div>
   );

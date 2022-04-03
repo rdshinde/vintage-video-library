@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const MatchPassword = ({ data: { getPassword, value } }) => {
   const [passwordState, setPasswordState] = useState({
     isMatching: false,
-    pwd: { initialPwd: null, confirmedPwd: null },
+    pwd: { initialPwd: value, confirmedPwd: value },
   });
   const {
     isMatching,
@@ -31,7 +31,7 @@ export const MatchPassword = ({ data: { getPassword, value } }) => {
           <input
             type={`${showPwd ? "text" : "password"}`}
             id="password"
-            value={value}
+            value={passwordState.pwd.initialPwd}
             required
             onChange={(e) =>
               setPasswordState((prev) => {
@@ -56,7 +56,7 @@ export const MatchPassword = ({ data: { getPassword, value } }) => {
           <input
             type={`${showPwd ? "text" : "password"}`}
             id="confirm-password"
-            value={value}
+            value={passwordState.pwd.confirmedPwd}
             required
             onChange={(e) =>
               setPasswordState((prev) => {
