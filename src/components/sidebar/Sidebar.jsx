@@ -9,40 +9,76 @@ export const Sidebar = () => {
         <div className="sidebar__list text-offwhite ">
           <div className="list-divider"></div>
           <section className="sidebar__list-section">
-            <NavLink to={"/"} className="nav-link">
-              <div className="text-start text-4 bold-lg nav-link">
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive
+                  ? `text-start text-4 bold-lg nav-link active-link`
+                  : `text-start text-4 bold-lg nav-link`
+              }
+            >
+              <div>
                 <span className="m-r-md">
                   <i className="fa-solid fa-home"></i>
                 </span>
                 Home
               </div>
             </NavLink>
-            <NavLink to={"/playlist"} className="nav-link">
-              <div className="text-start text-4 bold-lg nav-link">
+
+            <NavLink
+              to={"/playlist"}
+              className={({ isActive }) =>
+                isActive
+                  ? `text-start text-4 bold-lg nav-link active-link`
+                  : `text-start text-4 bold-lg nav-link`
+              }
+            >
+              <div>
                 <span className="m-r-md">
                   <i className="fa-solid fa-clapperboard"></i>
                 </span>
                 Playlist
               </div>
             </NavLink>
-            <NavLink to={"/liked-video"} className="nav-link">
-              <div className="text-start text-4 bold-lg nav-link">
+            <NavLink
+              to={"/liked-video"}
+              className={({ isActive }) =>
+                isActive
+                  ? `text-start text-4 bold-lg nav-link active-link`
+                  : `text-start text-4 bold-lg nav-link`
+              }
+            >
+              <div>
                 <span className="m-r-md">
                   <i className="fa fa-heart"></i>
                 </span>
                 Liked Videos
               </div>
             </NavLink>
-            <NavLink to={"/watch-later"} className="nav-link">
-              <div className="text-start text-4 bold-lg nav-link">
+            <NavLink
+              to={"/watch-later"}
+              className={({ isActive }) =>
+                isActive
+                  ? `text-start text-4 bold-lg nav-link active-link`
+                  : `text-start text-4 bold-lg nav-link`
+              }
+            >
+              <div>
                 <span className="m-r-md">
                   <i className="fa fa-clock"></i>
                 </span>
                 Watch Later
               </div>
             </NavLink>
-            <NavLink to={"/history"} className="nav-link">
-              <div className="text-start text-4 bold-lg nav-link">
+            <NavLink
+              to={"/history"}
+              className={({ isActive }) =>
+                isActive
+                  ? `text-start text-4 bold-lg nav-link active-link`
+                  : `text-start text-4 bold-lg nav-link`
+              }
+            >
+              <div>
                 <span className="m-r-md">
                   <i className="fa fa-history"></i>
                 </span>
