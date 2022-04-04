@@ -1,7 +1,12 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context";
 import "./sidebar.css";
 export const Sidebar = () => {
+  const { userAuthState, logoutHandler } = useAuth();
+  const isUserLoggedIn = userAuthState?.isUserLoggedIn;
+  const user = userAuthState?.user;
+  const firstName = user?.firstName;
+  const lastName = user?.lastName;
   return (
     <div className="sidebar-wrapper">
       <aside className="sidebar">
@@ -88,26 +93,31 @@ export const Sidebar = () => {
           </section>
         </div>
       </aside>
-      <section className="sidebar__avatar text-offwhite text-center flex-center">
-        <div className="user-info flex-center m-y-md">
-          <div className="text-default">
-            <img
-              className="avatar"
-              src="https://bermuda-css.netlify.app/assets/avatar.png"
-              alt="default-avatar"
-            />
+      {isUserLoggedIn && (
+        <section className="sidebar__avatar text-offwhite text-center flex-center">
+          <div className="user-info flex-center m-y-md">
+            <div className="text-default">
+              <img
+                className="avatar"
+                src="https://bermuda-css.netlify.app/assets/avatar.png"
+                alt="default-avatar"
+              />
+            </div>
+            <div className="text-start cursor-pointer">
+              <div className="text-4 bold-lg">{`${firstName} ${lastName}`}</div>
+              <button
+                className="btn logout-btn text-4 bold-lg text-danger"
+                onClick={() => logoutHandler()}
+              >
+                <span className="m-r-md text-4 bold-lg">
+                  <i className="fa-solid fa-right-from-bracket"></i>
+                </span>
+                Logout
+              </button>
+            </div>
           </div>
-          <div className="text-start cursor-pointer">
-            <div className="text-4 bold-lg">Rishikesh Shinde</div>
-            <button className="btn logout-btn text-4 bold-lg text-danger">
-              <span className="m-r-md text-4 bold-lg">
-                <i className="fa-solid fa-right-from-bracket"></i>
-              </span>
-              Logout
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 };
