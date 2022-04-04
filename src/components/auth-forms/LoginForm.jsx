@@ -31,8 +31,10 @@ export const LoginForm = () => {
           },
         });
 
-        navigate("/");
+        navigate(-1);
         Toast({ type: "success", msg: "Login Successful!" });
+      } else {
+        Toast({ type: "error", msg: "Something wen wrong! Try Again." });
       }
     }
   }, [serverResponse]);
