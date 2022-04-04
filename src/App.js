@@ -10,12 +10,14 @@ import {
 } from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { HistoryVideoPage } from "./pages/history-video-page/HistoryVideoPage";
+import { VideoPlayerPage } from "./pages/video-player-page/VideoPlayerPage";
 function App() {
   return (
     <div className="App">
       <LayoutWrapper>
         <Routes>
           <Route path="/" element={<DisplayVideoPage />} />
+          <Route path="/video/:videoId" element={<VideoPlayerPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/playlist" element={<PlaylistPage />} />
           <Route path="/liked-video" element={<LikedVideoPage />} />

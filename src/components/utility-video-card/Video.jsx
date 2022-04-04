@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 export const Video = ({
   data: { setActionModalState, _id, title, creator },
@@ -7,11 +7,12 @@ export const Video = ({
     <div className="card card__header-with-avatar border-rounded-md cursor-pointer">
       <div className="card__body">
         <div className="card__img-container card-image">
-          <img
-            className=""
-            src={`https://i.ytimg.com/vi/${_id}/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAHTLGi9aDsrpHzwXP0ak3xlyDN7w`}
-            alt=""
-          />
+          <Link to={`/video/${_id}`}>
+            <img
+              src={`https://i.ytimg.com/vi/${_id}/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAHTLGi9aDsrpHzwXP0ak3xlyDN7w`}
+              alt="video"
+            />
+          </Link>
         </div>
       </div>
       <div className="card__footer ">

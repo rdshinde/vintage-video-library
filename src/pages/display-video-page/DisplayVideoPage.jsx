@@ -10,7 +10,7 @@ export const DisplayVideoPage = () => {
       <FilterList data={categoryList} />
       <section className="video-container-wrapper">
         {videoList.map((video) => (
-          <VideoCard key={video._id} data={{video}} />
+          <VideoCard key={video._id} data={{ video }} />
         ))}
       </section>
     </div>
