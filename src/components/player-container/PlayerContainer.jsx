@@ -56,13 +56,12 @@ export const PlayerContainer = ({ data: { videoData } }) => {
           type: "ADD_TO_HISTORY",
           payload: { ...videoData },
         });
-        console.log("added");
+
       }
     }
   };
   useEffect(() => {
     if (Object.keys(videoData).length !== 0) {
-      console.log('ran')
       addToHistoryHandler(videoData);
     }
   }, [videoData]);

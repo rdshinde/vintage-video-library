@@ -56,7 +56,6 @@ const UserDataProvider = ({ children }) => {
         setWatchlaterVideos(serverResponse.data?.watchlater || []);
       } else if (serverResponse?.data?.history) {
         setHistoryVideos(serverResponse.data?.history || []);
-        console.log(serverResponse.data?.history);
       }
     } else {
       console.log("error");

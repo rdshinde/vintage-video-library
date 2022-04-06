@@ -11,7 +11,6 @@ import {
 const initialState = {
   videoList: [],
   categoryList: [],
-  playlist: [],
   sortBy: "",
 };
 
@@ -51,9 +50,31 @@ const VideoProvider = ({ children }) => {
     getCategories();
   }, []);
 
+  const getFilteredVideos = (sortBy, videos) => {
+    const videoList = [...videos];
+    if (sortBy && sortBy === "song") {
+      return videoList.filter((video) => video.category === "song");
+    } else if (sortBy && sortBy === "movie") {
+      return videoList.filter((video) => video.category === "movie");
+    } else if (sortBy && sortBy === "trailer") {
+      return videoList.filter((video) => video.category === "trailer");
+    } else if (sortBy && sortBy === "dialog") {
+      return videoList.filter((video) => video.category === "dialog");
+    } else {
+      return [...videoList];
+    }
+  };
+  const videosList = getFilteredVideos(videoState.sortBy, videoState.videoList);
   return (
     <VideoContext.Provider
-      value={{ videoState, isLoaderLoading, serverResponse, isErrorOccured }}
+      value={{
+        videoState,
+        isLoaderLoading,
+        serverResponse,
+        isErrorOccured,
+        videosList,
+        videoDispatch,
+      }}
     >
       {children}
     </VideoContext.Provider>
