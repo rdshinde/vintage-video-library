@@ -1,0 +1,8 @@
+.clear-history__wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.clear-history__wrapper h3{
+    flex-grow: 1;
+}

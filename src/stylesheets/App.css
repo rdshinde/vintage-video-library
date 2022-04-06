@@ -4,3 +4,8 @@
 .relative {
   position: relative;
 }
+.btn-secondary:hover {
+  background-color: var(--secondary-color);
+  opacity: 0.8;
+  transform: all 0.3s ease-in;
+}

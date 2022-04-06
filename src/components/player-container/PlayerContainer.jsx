@@ -1,14 +1,16 @@
-import React from "react";
+import { useEffect } from "react";
 import "./player-container.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useUserData } from "../../context";
+
 export const PlayerContainer = ({ data: { videoData } }) => {
   const navigate = useNavigate();
   const {
     userAuthState: { isUserLoggedIn },
   } = useAuth();
 
-  const { userDataDispatch, isInLiked, isInWatchLater } = useUserData();
+  const { userDataDispatch, isInLiked, isInWatchLater, isInHistory } =
+    useUserData();
   const { _id, title, description, creator } = videoData;
   const addtoLikedHandler = (e, videoData) => {
     e.stopPropagation();
@@ -46,6 +48,24 @@ export const PlayerContainer = ({ data: { videoData } }) => {
       navigate("/login");
     }
   };
+
+  const addToHistoryHandler = (videoData) => {
+    if (isUserLoggedIn) {
+      if (!isInHistory(videoData._id) && videoData) {
+        userDataDispatch({
+          type: "ADD_TO_HISTORY",
+          payload: { ...videoData },
+        });
+        console.log("added");
+      }
+    }
+  };
+  useEffect(() => {
+    if (Object.keys(videoData).length !== 0) {
+      console.log('ran')
+      addToHistoryHandler(videoData);
+    }
+  }, [videoData]);
   return (
     <div className="player-container-wrapper">
       <div>

@@ -12,3 +12,4 @@ export { Sidebar } from "./sidebar/Sidebar";
 export { SignupForm } from "./auth-forms/SignupForm";
 export { VideoCard } from "./video-card/VideoCard";
 export { WatchLaterVideo } from "./watch-later-video/WatchLaterVideo";
+export { HistoryVideo } from "./history-video/HistoryVideo";

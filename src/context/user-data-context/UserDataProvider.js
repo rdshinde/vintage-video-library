@@ -54,7 +54,9 @@ const UserDataProvider = ({ children }) => {
         setLikedVideos(serverResponse.data?.likes || []);
       } else if (serverResponse?.data?.watchlater) {
         setWatchlaterVideos(serverResponse.data?.watchlater || []);
-        console.log(serverResponse.data?.watchlater);
+      } else if (serverResponse?.data?.history) {
+        setHistoryVideos(serverResponse.data?.history || []);
+        console.log(serverResponse.data?.history);
       }
     } else {
       console.log("error");
@@ -73,6 +75,10 @@ const UserDataProvider = ({ children }) => {
         () => userDataDispatch({ type: "GET_WATCH_LATER_VIDEOS" }),
         0
       );
+      setTimeOutID = setTimeout(
+        () => userDataDispatch({ type: "GET_HISTORY_VIDEOS" }),
+        0
+      );
     }
     return () => clearTimeout(setTimeOutID);
   }, [isUserLoggedIn]);
@@ -82,6 +88,9 @@ const UserDataProvider = ({ children }) => {
   };
   const isInWatchLater = (id) => {
     return watchLaterVideos.some((video) => video._id === id);
+  };
+  const isInHistory = (id) => {
+    return historyVideos.some((video) => video._id === id);
   };
   return (
     <UserDataContext.Provider
@@ -95,6 +104,8 @@ const UserDataProvider = ({ children }) => {
         isInLiked,
         watchLaterVideos,
         isInWatchLater,
+        isInHistory,
+        historyVideos,
       }}
     >
       {children}
