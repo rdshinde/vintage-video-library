@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export const Video = ({
-  data: { setActionModalState, _id, title, creator },
+  video: { setActionModalState, _id, title, creator },
 }) => {
   return (
     <div className="card card__header-with-avatar border-rounded-md cursor-pointer">

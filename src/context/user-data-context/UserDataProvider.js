@@ -52,6 +52,9 @@ const UserDataProvider = ({ children }) => {
     if (serverResponse?.status === 200 || serverResponse?.status === 201) {
       if (serverResponse?.data?.likes) {
         setLikedVideos(serverResponse.data?.likes || []);
+      } else if (serverResponse?.data?.watchlater) {
+        setWatchlaterVideos(serverResponse.data?.watchlater || []);
+        console.log(serverResponse.data?.watchlater);
       }
     } else {
       console.log("error");
@@ -59,16 +62,26 @@ const UserDataProvider = ({ children }) => {
   }, [serverResponse]);
 
   useEffect(() => {
+    let setTimeOutID;
     if (!isUserLoggedIn) {
       userDataDispatch({ type: "CLEAR_USER_DATA" });
       setLikedVideos(() => []);
+      setWatchlaterVideos(() => []);
     } else {
       userDataDispatch({ type: "GET_LIKED_VIDEOS" });
+      setTimeOutID = setTimeout(
+        () => userDataDispatch({ type: "GET_WATCH_LATER_VIDEOS" }),
+        0
+      );
     }
+    return () => clearTimeout(setTimeOutID);
   }, [isUserLoggedIn]);
 
   const isInLiked = (id) => {
     return likedVideos.some((video) => video._id === id);
+  };
+  const isInWatchLater = (id) => {
+    return watchLaterVideos.some((video) => video._id === id);
   };
   return (
     <UserDataContext.Provider
@@ -80,6 +93,8 @@ const UserDataProvider = ({ children }) => {
         isLoaderLoading,
         setLikedVideos,
         isInLiked,
+        watchLaterVideos,
+        isInWatchLater,
       }}
     >
       {children}

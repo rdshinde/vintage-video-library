@@ -36,7 +36,33 @@ const userDataReducer = (state, { type, payload }) => {
           video: {},
         },
       };
-
+    case "GET_WATCH_LATER_VIDEOS":
+      return {
+        ...state,
+        apiURL: "/api/user/watchlater",
+        apiMethod: "GET",
+        postData: {
+          video: {},
+        },
+      };
+    case "ADD_TO_WATCH_LATER":
+      return {
+        ...state,
+        apiURL: "/api/user/watchlater",
+        apiMethod: "POST",
+        postData: {
+          video: { ...payload },
+        },
+      };
+    case "REMOVE_FROM_WATCH_LATER":
+      return {
+        ...state,
+        apiURL: `/api/user/watchlater/${payload}`,
+        apiMethod: "DELETE",
+        postData: {
+          video: {},
+        },
+      };
     default:
       return { ...state };
   }

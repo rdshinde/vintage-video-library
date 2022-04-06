@@ -16,7 +16,7 @@ export const LikedVideo = ({ videoData: { video } }) => {
   };
   return (
     <div className="video-card-wrapper" style={{ maxHeight: "19rem" }}>
-      <Video data={{ setActionModalState, _id, title, creator }} />
+      <Video video={{ setActionModalState, _id, title, creator }} />
       <ActionModal
         data={{
           showActionModal,
