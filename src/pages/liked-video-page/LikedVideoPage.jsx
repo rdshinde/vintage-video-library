@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { LikedVideo } from "../../components/liked-video/LikedVideo";
 import { useAuth, useUserData } from "../../context";

@@ -1,14 +1,16 @@
-import React from "react";
+import { useEffect } from "react";
 import "./player-container.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useUserData } from "../../context";
+
 export const PlayerContainer = ({ data: { videoData } }) => {
   const navigate = useNavigate();
   const {
     userAuthState: { isUserLoggedIn },
   } = useAuth();
 
-  const { userDataDispatch, isInLiked } = useUserData();
+  const { userDataDispatch, isInLiked, isInWatchLater, isInHistory } =
+    useUserData();
   const { _id, title, description, creator } = videoData;
   const addtoLikedHandler = (e, videoData) => {
     e.stopPropagation();
@@ -28,7 +30,41 @@ export const PlayerContainer = ({ data: { videoData } }) => {
       navigate("/login");
     }
   };
+  const addToWatchLaterHandler = (e, videoData) => {
+    e.stopPropagation();
+    if (isUserLoggedIn) {
+      if (!isInWatchLater(_id)) {
+        userDataDispatch({
+          type: "ADD_TO_WATCH_LATER",
+          payload: { ...videoData },
+        });
+      } else {
+        userDataDispatch({
+          type: "REMOVE_FROM_WATCH_LATER",
+          payload: _id,
+        });
+      }
+    } else {
+      navigate("/login");
+    }
+  };
 
+  const addToHistoryHandler = (videoData) => {
+    if (isUserLoggedIn) {
+      if (!isInHistory(videoData._id) && videoData) {
+        userDataDispatch({
+          type: "ADD_TO_HISTORY",
+          payload: { ...videoData },
+        });
+
+      }
+    }
+  };
+  useEffect(() => {
+    if (Object.keys(videoData).length !== 0) {
+      addToHistoryHandler(videoData);
+    }
+  }, [videoData]);
   return (
     <div className="player-container-wrapper">
       <div>
@@ -61,11 +97,18 @@ export const PlayerContainer = ({ data: { videoData } }) => {
             </span>
             Add to Playlist
           </button>
-          <button className="btn btn-secondary">
+          <button
+            className="btn btn-secondary"
+            onClick={(e) => addToWatchLaterHandler(e, videoData)}
+          >
             <span className="m-r-md">
-              <i className="fa fa-clock"></i>
+              <i
+                className={`fa fa-${
+                  !isInWatchLater(_id) ? "clock" : "trash"
+                } m-r-sm`}
+              ></i>
             </span>
-            Watch Later
+            {!isInWatchLater(_id) ? "Watch Later" : "Remove From Watch Later"}
           </button>
         </div>
         <div className="footer__description">
