@@ -9,6 +9,7 @@ export const PlaylistVideosPage = () => {
   const location = useLocation();
   const playlist = { ...location.state };
   const playlistId = playlist?._id;
+
   return (
     <div className="ralative">
       {isUserLoggedIn ? (

@@ -66,10 +66,10 @@ export const PlaylistModal = () => {
           {playlists.map((playlist) => {
             return (
               <div className="text-start" key={playlist._id}>
-                <label htmlFor="playlist-name">
+                <label htmlFor={playlist._id}>
                   <input
                     className="m-md"
-                    id="playlist-name"
+                    id={playlist._id}
                     name="playlists"
                     type="radio"
                     placeholder="ex. favourite"
