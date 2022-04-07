@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import { useAxios } from "../../services";
 import { authReducer } from "./authReducer";
 import { Toast } from "../../utils";
+import { useNavigate } from "react-router-dom";
 const initialUserAuthState = {
   userAuthState: {
     isUserLoggedIn: false,
@@ -23,6 +24,7 @@ const AuthContext = createContext(initialUserAuthState);
 const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [userAuthState, userAuthDispatch] = useReducer(
     authReducer,
     initialUserAuthState
@@ -58,6 +60,7 @@ const AuthProvider = ({ children }) => {
   const logoutHandler = () => {
     userAuthDispatch({ type: "LOGOUT" });
     localStorage.clear("token");
+    navigate("/");
     Toast({
       type: "success",
       msg: `${userAuthState.user.firstName} logged out successfully!`,
