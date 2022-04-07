@@ -62,6 +62,13 @@ const UserDataProvider = ({ children }) => {
         setHistoryVideos(serverResponse.data?.history || []);
       } else if (serverResponse?.data?.playlists) {
         setPlaylists(serverResponse.data?.playlists || []);
+      } else if (serverResponse?.data?.playlist) {
+        setPlaylists((prev) => [
+          ...prev.filter(
+            (playlist) => playlist._id !== serverResponse?.data?.playlist?._id
+          ),
+          { ...serverResponse?.data?.playlist },
+        ]);
       }
     } else {
       console.log("error");

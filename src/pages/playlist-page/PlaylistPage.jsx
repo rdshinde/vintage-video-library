@@ -14,9 +14,14 @@ export const PlaylistPage = () => {
           <h3 className="playlist__heading">Your Playlists </h3>
           <div className="video-container-wrapper">
             {playlists?.map((playlist) => {
-              return (
-                <PlaylistCard key={playlist?._id} playlistData={{ playlist }} />
-              );
+              if (playlist.videos.length !== 0) {
+                return (
+                  <PlaylistCard
+                    key={playlist?._id}
+                    playlistData={{ playlist }}
+                  />
+                );
+              }
             })}
           </div>
         </div>
