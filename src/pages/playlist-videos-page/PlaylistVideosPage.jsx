@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useAuth, useUserData } from "../../context";
+import { useAuth } from "../../context";
 import { Link } from "react-router-dom";
 import { PlaylistVideo } from "../../components";
 export const PlaylistVideosPage = () => {
