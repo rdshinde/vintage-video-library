@@ -106,7 +106,7 @@ export const PlayerContainer = ({ data: { videoData } }) => {
           });
         }
       } else {
-        navigate("/login");
+        navigate("/auth");
       }
     };
     const addToWatchLaterHandler = (e, videoData) => {
@@ -124,7 +124,7 @@ export const PlayerContainer = ({ data: { videoData } }) => {
           });
         }
       } else {
-        navigate("/login");
+        navigate("/auth");
       }
     };
 
