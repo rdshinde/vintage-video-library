@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import "./sidebar.css";
 export const Sidebar = () => {
@@ -7,6 +7,7 @@ export const Sidebar = () => {
   const user = userAuthState?.user;
   const firstName = user?.firstName;
   const lastName = user?.lastName;
+  const navigate = useNavigate();
   return (
     <div className="sidebar-wrapper">
       <aside className="sidebar">
@@ -107,7 +108,10 @@ export const Sidebar = () => {
               <div className="text-4 bold-lg">{`${firstName} ${lastName}`}</div>
               <button
                 className="btn logout-btn text-4 bold-lg text-danger"
-                onClick={() => logoutHandler()}
+                onClick={() => {
+                  logoutHandler();
+                  navigate("/");
+                }}
               >
                 <span className="m-r-md text-4 bold-lg">
                   <i className="fa-solid fa-right-from-bracket"></i>
