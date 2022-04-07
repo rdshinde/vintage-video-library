@@ -17,9 +17,10 @@ $ npm start
 - Filter Videos
 - Individual video page
 - Like video 
-- Watch Later Video
-- History video
+- Add to Watch Later
+- Video History
 - Create playlist
+- Add videos to playlist
 - Authentication:
   -  Signup
   -  Login
