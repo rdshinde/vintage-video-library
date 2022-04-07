@@ -1,21 +1,26 @@
-import { PlaylistCard } from "../../components/playlist-card/PlaylistCard";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useAuth, useUserData } from "../../context";
-import "./playlist-page.css";
-export const PlaylistPage = () => {
-  const { playlists } = useUserData();
+import { Link } from "react-router-dom";
+import { PlaylistVideo } from "../../components";
+export const PlaylistVideosPage = () => {
   const {
     userAuthState: { isUserLoggedIn },
   } = useAuth();
+  const location = useLocation();
+  const playlist = { ...location.state };
+  const playlistId = playlist?._id;
   return (
-    <div>
+    <div className="ralative">
       {isUserLoggedIn ? (
         <div>
-          <h3 className="playlist__heading">Your Playlists </h3>
+          <h3 className="playlist__heading">{playlist?.title} Videos</h3>
           <div className="video-container-wrapper">
-            {playlists?.map((playlist) => {
+            {playlist?.videos?.map((video) => {
               return (
-                <PlaylistCard key={playlist?._id} playlistData={{ playlist }} />
+                <PlaylistVideo
+                  key={video?._id}
+                  videoData={{ video, playlistId }}
+                />
               );
             })}
           </div>
