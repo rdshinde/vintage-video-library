@@ -7,6 +7,7 @@ import {
   PageNotFound,
   PlaylistPage,
   WatchLaterVideoPage,
+  PlaylistVideosPage,
 } from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { HistoryVideoPage } from "./pages/history-video-page/HistoryVideoPage";
@@ -23,6 +24,10 @@ function App() {
           <Route path="/liked-video" element={<LikedVideoPage />} />
           <Route path="/watch-later" element={<WatchLaterVideoPage />} />
           <Route path="/history" element={<HistoryVideoPage />} />
+          <Route
+            path="/playlists/:playlistId"
+            element={<PlaylistVideosPage />}
+          />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </LayoutWrapper>

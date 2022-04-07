@@ -7,3 +7,4 @@ export { WatchLaterVideoPage } from "./watch-later-video-page/WatchLaterVideoPag
 export { PageNotFound } from "./page-not-found/PageNotFound";
 export { HistoryVideoPage } from "./history-video-page/HistoryVideoPage";
 export { VideoPlayerPage } from "./video-player-page/VideoPlayerPage";
+export { PlaylistVideosPage } from "./playlist-videos-page/PlaylistVideosPage";

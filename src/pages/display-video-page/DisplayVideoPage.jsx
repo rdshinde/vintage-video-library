@@ -1,13 +1,15 @@
 import "./display-video-page.css";
 import React from "react";
-import { FilterList, VideoCard } from "../../components";
-import { useVideo } from "../../context";
+import { FilterList, VideoCard, PlaylistModal } from "../../components";
+import { useUserData, useVideo } from "../../context";
 export const DisplayVideoPage = () => {
   const { videoState, isLoaderLoading, videosList } = useVideo();
-  const {categoryList } = videoState;
+  const { categoryList } = videoState;
+  const { isPlaylistModal } = useUserData();
   return (
     <div className="m-t-lg">
-      <FilterList data={{categoryList}} />
+      {isPlaylistModal.state && <PlaylistModal />}
+      <FilterList data={{ categoryList }} />
       <section className="video-container-wrapper">
         {videosList?.map((video) => (
           <VideoCard key={video._id} data={{ video }} />

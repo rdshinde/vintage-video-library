@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import "./player-container.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useUserData } from "../../context";
+import { PlaylistModal } from "../playlist-modal/PlaylistModal";
 
 export const PlayerContainer = ({ data: { videoData } }) => {
   const navigate = useNavigate();
@@ -9,57 +10,22 @@ export const PlayerContainer = ({ data: { videoData } }) => {
     userAuthState: { isUserLoggedIn },
   } = useAuth();
 
-  const { userDataDispatch, isInLiked, isInWatchLater, isInHistory } =
-    useUserData();
+  const {
+    userDataDispatch,
+    isInLiked,
+    isInWatchLater,
+    isInHistory,
+    isPlaylistModal,
+    setPlaylistModal,
+  } = useUserData();
   const { _id, title, description, creator } = videoData;
-  const addtoLikedHandler = (e, videoData) => {
-    e.stopPropagation();
-    if (isUserLoggedIn) {
-      if (!isInLiked(_id)) {
-        userDataDispatch({
-          type: "ADD_TO_LIKED",
-          payload: { ...videoData },
-        });
-      } else {
-        userDataDispatch({
-          type: "REMOVE_FROM_LIKED",
-          payload: _id,
-        });
-      }
-    } else {
-      navigate("/login");
-    }
-  };
-  const addToWatchLaterHandler = (e, videoData) => {
-    e.stopPropagation();
-    if (isUserLoggedIn) {
-      if (!isInWatchLater(_id)) {
-        userDataDispatch({
-          type: "ADD_TO_WATCH_LATER",
-          payload: { ...videoData },
-        });
-      } else {
-        userDataDispatch({
-          type: "REMOVE_FROM_WATCH_LATER",
-          payload: _id,
-        });
-      }
-    } else {
-      navigate("/login");
-    }
-  };
+  const {
+    addToHistoryHandler,
+    addtoLikedHandler,
+    playListHandler,
+    addToWatchLaterHandler,
+  } = videoActionHandlers();
 
-  const addToHistoryHandler = (videoData) => {
-    if (isUserLoggedIn) {
-      if (!isInHistory(videoData._id) && videoData) {
-        userDataDispatch({
-          type: "ADD_TO_HISTORY",
-          payload: { ...videoData },
-        });
-
-      }
-    }
-  };
   useEffect(() => {
     if (Object.keys(videoData).length !== 0) {
       addToHistoryHandler(videoData);
@@ -67,6 +33,7 @@ export const PlayerContainer = ({ data: { videoData } }) => {
   }, [videoData]);
   return (
     <div className="player-container-wrapper">
+      {isPlaylistModal.state && <PlaylistModal />}
       <div>
         <iframe
           className="video-iframe"
@@ -91,7 +58,10 @@ export const PlayerContainer = ({ data: { videoData } }) => {
             </span>
             {isInLiked(_id) ? "Liked" : "Like"}
           </button>
-          <button className="btn btn-secondary">
+          <button
+            className="btn btn-secondary"
+            onClick={(e) => playListHandler(e, videoData)}
+          >
             <span className="m-r-md">
               <i className="fa-solid fa-clapperboard"></i>
             </span>
@@ -118,4 +88,66 @@ export const PlayerContainer = ({ data: { videoData } }) => {
       </div>
     </div>
   );
+  
+
+  function videoActionHandlers() {
+    const addtoLikedHandler = (e, videoData) => {
+      e.stopPropagation();
+      if (isUserLoggedIn) {
+        if (!isInLiked(_id)) {
+          userDataDispatch({
+            type: "ADD_TO_LIKED",
+            payload: { ...videoData },
+          });
+        } else {
+          userDataDispatch({
+            type: "REMOVE_FROM_LIKED",
+            payload: _id,
+          });
+        }
+      } else {
+        navigate("/login");
+      }
+    };
+    const addToWatchLaterHandler = (e, videoData) => {
+      e.stopPropagation();
+      if (isUserLoggedIn) {
+        if (!isInWatchLater(_id)) {
+          userDataDispatch({
+            type: "ADD_TO_WATCH_LATER",
+            payload: { ...videoData },
+          });
+        } else {
+          userDataDispatch({
+            type: "REMOVE_FROM_WATCH_LATER",
+            payload: _id,
+          });
+        }
+      } else {
+        navigate("/login");
+      }
+    };
+
+    const addToHistoryHandler = (videoData) => {
+      if (isUserLoggedIn) {
+        if (!isInHistory(videoData._id) && videoData) {
+          userDataDispatch({
+            type: "ADD_TO_HISTORY",
+            payload: { ...videoData },
+          });
+        }
+      }
+    };
+
+    const playListHandler = (e, videoData) => {
+      e.stopPropagation();
+      setPlaylistModal({ state: true, videoData: { ...videoData } });
+    };
+    return {
+      addToHistoryHandler,
+      addtoLikedHandler,
+      playListHandler,
+      addToWatchLaterHandler,
+    };
+  }
 };

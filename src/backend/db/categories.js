@@ -8,6 +8,12 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
+    categoryName: "all",
+    description: "All available videos.",
+    isActive:true
+  },
+  {
+    _id: uuid(),
     categoryName: "song",
     description: "1980's evergreen bollywood songs.",
   },

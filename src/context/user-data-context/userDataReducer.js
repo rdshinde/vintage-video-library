@@ -99,6 +99,60 @@ const userDataReducer = (state, { type, payload }) => {
           video: {},
         },
       };
+    case "GET_ALL_PLAYLISTS":
+      return {
+        ...state,
+        apiURL: `/api/user/playlists`,
+        apiMethod: "GET",
+        postData: {
+          video: {},
+        },
+      };
+    case "CREATE_PLAYLIST":
+      return {
+        ...state,
+        apiURL: `/api/user/playlists`,
+        apiMethod: "POST",
+        postData: {
+          playlist: { title: payload, description: "" },
+        },
+      };
+    case "DELETE_PLAYLIST":
+      return {
+        ...state,
+        apiURL: `/api/user/playlists/${payload}`,
+        apiMethod: "DELETE",
+        postData: {
+          video: {},
+        },
+      };
+    case "GET_SINGLE_PLAYLIST":
+      return {
+        ...state,
+        apiURL: `/api/user/playlists/${payload}`,
+        apiMethod: "GET",
+        postData: {
+          video: {},
+        },
+      };
+    case "ADD_VIDEO_IN_PLAYLIST":
+      return {
+        ...state,
+        apiURL: `/api/user/playlists/${payload.playlistId}`,
+        apiMethod: "POST",
+        postData: {
+          video: { ...payload.videoData },
+        },
+      };
+    case "REMOVE_VIDEO_FROM_PLAYLIST":
+      return {
+        ...state,
+        apiURL: `/api/user/playlists/${payload.playlistId}/${payload.videoId}`,
+        apiMethod: "DELETE",
+        postData: {
+          video: {},
+        },
+      };
     default:
       return { ...state };
   }

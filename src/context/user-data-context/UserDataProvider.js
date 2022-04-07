@@ -22,10 +22,14 @@ const UserDataContext = createContext(initialUserDataState);
 const useUserData = () => useContext(UserDataContext);
 
 const UserDataProvider = ({ children }) => {
-  const [plalist, setPlaylist] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
   const [likedVideos, setLikedVideos] = useState([]);
   const [historyVideos, setHistoryVideos] = useState([]);
   const [watchLaterVideos, setWatchlaterVideos] = useState([]);
+  const [isPlaylistModal, setPlaylistModal] = useState({
+    state: false,
+    videoData: {},
+  });
 
   const {
     userAuthState: { isUserLoggedIn, encodedToken },
@@ -56,6 +60,15 @@ const UserDataProvider = ({ children }) => {
         setWatchlaterVideos(serverResponse.data?.watchlater || []);
       } else if (serverResponse?.data?.history) {
         setHistoryVideos(serverResponse.data?.history || []);
+      } else if (serverResponse?.data?.playlists) {
+        setPlaylists(serverResponse.data?.playlists || []);
+      } else if (serverResponse?.data?.playlist) {
+        setPlaylists((prev) => [
+          ...prev.filter(
+            (playlist) => playlist._id !== serverResponse?.data?.playlist?._id
+          ),
+          { ...serverResponse?.data?.playlist },
+        ]);
       }
     } else {
       console.log("error");
@@ -76,6 +89,10 @@ const UserDataProvider = ({ children }) => {
       );
       setTimeOutID = setTimeout(
         () => userDataDispatch({ type: "GET_HISTORY_VIDEOS" }),
+        0
+      );
+      setTimeOutID = setTimeout(
+        () => userDataDispatch({ type: "GET_ALL_PLAYLISTS" }),
         0
       );
     }
@@ -105,6 +122,10 @@ const UserDataProvider = ({ children }) => {
         isInWatchLater,
         isInHistory,
         historyVideos,
+        isPlaylistModal,
+        setPlaylistModal,
+        playlists,
+        setPlaylists,
       }}
     >
       {children}

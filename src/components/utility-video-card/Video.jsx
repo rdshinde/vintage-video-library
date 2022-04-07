@@ -16,12 +16,7 @@ export const Video = ({
         </div>
       </div>
       <div className="card__footer ">
-        <img
-          className="avatar"
-          src="https://cdn.pixabay.com/photo/2016/10/14/00/08/old-man-1739154__480.jpg"
-          alt=""
-        />
-        <div className="video__title m-y-md">
+        <div className="video__title m-md">
           <h4 className="p-x-sm video__title text-3 bold-lg">{title}</h4>
           <p className="text-5 bold-lg p-x-sm text-gray">{creator}</p>
         </div>
