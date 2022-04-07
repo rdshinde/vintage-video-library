@@ -5,16 +5,22 @@ import { PlaylistModal } from "../playlist-modal/PlaylistModal";
 import { Video } from "../utility-video-card/Video";
 import "./video-card.css";
 export const VideoCard = ({ data }) => {
+  const { setPlaylistModal } = useUserData();
   const { userDataDispatch, isInWatchLater } = useUserData();
   const { _id, title, creator, description, category } = data.video;
   const [showActionModal, setActionModalState] = useState(false);
+  const playListHandler = (video) => {
+    setPlaylistModal({ state: true, videoData: { ...video } });
+  };
   const ActionModal = () => {
     return (
       <div className={`action-modal ${showActionModal && "show-action-modal"}`}>
         <div className="action-modal__btn">
           <button
             className="btn"
-            onClick={() => ActionModalClickHandler("ADD_TO_PLAYLIST", data.video)}
+            onClick={() =>
+              ActionModalClickHandler("ADD_TO_PLAYLIST", data.video)
+            }
           >
             <i className="fa-solid fa-clapperboard m-r-md"></i>Add to Playlist
           </button>
@@ -22,7 +28,9 @@ export const VideoCard = ({ data }) => {
         <div className="action-modal__btn">
           <button
             className="btn"
-            onClick={() => ActionModalClickHandler("ADD_TO_WATCH_LATER", data.video)}
+            onClick={() =>
+              ActionModalClickHandler("ADD_TO_WATCH_LATER", data.video)
+            }
           >
             <i
               className={`fa fa-${
@@ -49,8 +57,11 @@ export const VideoCard = ({ data }) => {
           payload: _id,
         });
       }
+    } else if (actionType === "ADD_TO_PLAYLIST") {
+      playListHandler(data.video);
     }
   };
+
   return (
     <div className="video-card-wrapper" style={{ maxHeight: "22rem" }}>
       <Video video={{ setActionModalState, _id, title, creator }} />
